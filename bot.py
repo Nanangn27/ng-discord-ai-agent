@@ -78,7 +78,6 @@ async def help(ctx):
     await ctx.send(embed=embed)
 
 
-bot.run(TOKEN).
 if bot.user in message.mentions:
         await message.reply(
             "👋 Hello! I'm NG AI Agent.\n"
