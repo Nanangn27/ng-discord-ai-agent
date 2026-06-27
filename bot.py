@@ -164,8 +164,6 @@ async def userinfo(ctx, member: discord.Member = None):
 
     await ctx.send(embed=embed)
 
-from ai import ask_ai
-
 
 @bot.command()
 async def ask(ctx, *, question):
