@@ -1,8 +1,28 @@
+import os
+from openai import OpenAI
+from dotenv import load_dotenv
+
+load_dotenv()
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
 def ask_ai(prompt):
-    return f"""🤖 NG AI Agent
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4.1-mini",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are NG AI Agent, a helpful Discord assistant."
+                },
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ]
+        )
 
-You asked:
-{prompt}
+        return response.choices[0].message.content
 
-AI integration will be added next.
-"""
+    except Exception as e:
+        return f"❌ Error: {e}"
