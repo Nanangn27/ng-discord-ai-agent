@@ -125,4 +125,54 @@ async def help(ctx):
     await ctx.send(embed=embed)
 
 
+@bot.command()
+async def uptime(ctx):
+    await ctx.send("🟢 NG AI Agent is running.")
+
+
+@bot.command()
+async def invite(ctx):
+    await ctx.send("Invite link coming soon.")
+
+
+@bot.command()
+async def server(ctx):
+    guild = ctx.guild
+    await ctx.send(
+        f"**{guild.name}**\n"
+        f"Members: {guild.member_count}"
+    )
+
+
+@bot.command()
+async def avatar(ctx, member: discord.Member = None):
+    member = member or ctx.author
+    await ctx.send(member.display_avatar.url)
+
+
+@bot.command()
+async def userinfo(ctx, member: discord.Member = None):
+    member = member or ctx.author
+
+    embed = discord.Embed(
+        title=str(member),
+        color=0x5865F2
+    )
+
+    embed.add_field(name="ID", value=member.id, inline=False)
+    embed.add_field(name="Display Name", value=member.display_name, inline=False)
+
+    await ctx.send(embed=embed)
+
+from ai import ask_ai
+
+
+@bot.command()
+async def ask(ctx, *, question):
+    await ctx.send("🧠 Thinking...")
+
+    answer = ask_ai(question)
+
+    await ctx.send(answer)
+
 bot.run(TOKEN)
