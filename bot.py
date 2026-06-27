@@ -2,6 +2,7 @@ import os
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
+from ai import ask_ai
 
 load_dotenv()
 
