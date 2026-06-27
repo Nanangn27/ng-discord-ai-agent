@@ -78,7 +78,12 @@ async def help(ctx):
     await ctx.send(embed=embed)
 
 
-if bot.user in message.mentions:
+@bot.event
+async def on_message(message):
+    if message.author.bot:
+        return
+
+    if bot.user in message.mentions:
         await message.reply(
             "👋 Hello! I'm NG AI Agent.\n"
             "Use !help to see available commands."
