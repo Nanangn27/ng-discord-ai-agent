@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 from ai import ask_ai
+from database import setup
 
 load_dotenv()
 
@@ -22,6 +23,8 @@ bot = commands.Bot(
 
 @bot.event
 async def on_ready():
+    setup()
+
     print("=" * 50)
     print(f"Logged in as {bot.user}")
     print(f"ID: {bot.user.id}")
